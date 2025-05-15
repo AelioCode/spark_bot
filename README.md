@@ -1,7 +1,4 @@
-Je veux faire un bot personnel en rust qui permet d'effectuer des taches. le bot s'appellera Spark. Par quoi commencer ?
-
-# Tsdsfhfsh
-## eegrr
+Je veux faire un bot personnel en rust qui permet d'effectuer des taches. le bot s'appellera Spark.
 
 
 - [x] /start : message de bienvenue et configuration initiale
