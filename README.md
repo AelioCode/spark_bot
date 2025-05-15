@@ -6,7 +6,9 @@ Je veux faire un bot personnel en rust qui permet d'effectuer des taches. le bot
 - [x] /remember : Spark retient une info pour plus tard (ex : /remember mon code vwifi est 1234)
 - [x] /recall : retrouve une info mémorisée
 - [x] /pomodoro
-- [ ] /todo : gérer une liste de tâches (ajouter, supprimer, lister)
+- [x] /localize : détecte ton emplacement (via IP ou config) et te donne des infos locales
+- [x] /todo : gérer une liste de tâches (ajouter, supprimer, lister)
+
 - [ ] /log : Journalisation des actions (log des tâches effectuées)
 
 - [ ] /prix : Donne le prix actuel d'une crypto
@@ -38,6 +40,5 @@ Je veux faire un bot personnel en rust qui permet d'effectuer des taches. le bot
 - [ ] /quote : citation inspirante aléatoire
 - [ ] /joke : blague du jour
 - [ ] /vault : stocker des infos sensibles localement (mots de passe, clés API)
-- [ ] /whereami : détecte ton emplacement (via IP ou config) et te donne des infos locales
 - [ ] /open : ouvre un lien, un fichier ou une app selon un alias (ex : /open projet)
 - [ ] /report : génère un rapport journalier ou hebdo
