@@ -1,3 +1,4 @@
+mod core;
 mod bot;
 
 fn main() {
