@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use crate::core::input::get_input;
 
-pub fn todo(todo_list: &mut HashMap<String, Vec<String>>) {
+pub fn handle_todo(todo_list: &mut HashMap<String, Vec<String>>) {
     println!("📒 Gestionnaire de listes");
 
     afficher_listes(todo_list);

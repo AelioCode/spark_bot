@@ -5,24 +5,20 @@ use crate::core::input::{
     welcome_message
 };
 
-use crate::core::commands::{
+use crate::commands::{
     start,
+    remember,
     recall,
     help,
     pomodoro,
     localize,
-    Command,
-};
-
-use crate::core::todo::{
     todo,
 };
 
-struct Context {
-        memory: String,
-        todo_list: HashMap<String, Vec<String>>,
-    }
 
+use crate::core::command_info::Command;
+
+use crate::core::context::Context;
 
 pub fn spark_bot() {
 
@@ -37,25 +33,19 @@ pub fn spark_bot() {
         todo_list: HashMap::new(),
     };
 
-
-
     welcome_message();
 
     loop {
         let input = get_input();
 
         match Command::from(input.as_str()) {
-            Command::Start => start(),
-            Command::Remember => {
-                println!("Que dois-je me souvenir ?");
-                ctx.memory = get_input();
-                println!("Ok, je m'en souviendrai !");
-            }
-            Command::Recall => recall(&ctx.memory),
-            Command::Pomodoro => pomodoro(),
-            Command::Localize => localize(),
-            Command::Todo => todo(&mut ctx.todo_list),
-            Command::Help => help(),
+            Command::Start => start::handle_start(),
+            Command::Remember => remember::handle_remember(&mut ctx),
+            Command::Recall => recall::handle_recall(&ctx.memory),
+            Command::Pomodoro => pomodoro::handle_pomodoro(),
+            Command::Localize => localize::handle_localize(),
+            Command::Todo => todo::handle_todo(&mut ctx.todo_list),
+            Command::Help => help::handle_help(),
             Command::Exit => {
                 println!("À bientôt !");
                 break;

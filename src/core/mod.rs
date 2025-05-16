@@ -1,3 +1,3 @@
 pub mod input;
-pub mod commands;
-pub mod todo;
+pub mod command_info;
+pub mod context;
