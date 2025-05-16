@@ -9,3 +9,13 @@ Spark ne crée pas, il **fait**. Conçu pour être polyvalent et efficace, il vo
 - Langage : **Rust**
 - Architecture : Modulaire et extensible
 - Performance : Conçu pour être rapide et efficace
+
+## Architecture
+
+src/
+├── main.rs
+├── bot.rs
+├── core/
+│   ├── input.rs
+│   ├── commands.rs
+│   └── todo.rs

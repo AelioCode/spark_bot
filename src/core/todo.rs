@@ -4,7 +4,7 @@ use std::collections::HashMap;
 use crate::core::input::get_input;
 
 
-fn todo(todo_list: &mut HashMap<String, Vec<String>>) {
+pub fn todo(todo_list: &mut HashMap<String, Vec<String>>) {
     println!("📒 Gestionnaire de listes");
 
     if todo_list.is_empty() {

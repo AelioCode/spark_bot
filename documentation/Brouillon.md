@@ -1,12 +1,3 @@
-# Séparation en modules
-
-src/
-├── main.rs
-├── core/
-│   ├── input.rs
-│   ├── commands.rs
-│   └── todo.rs
-
 # Utiliser un enum pour les commandes
 
 enum Command {

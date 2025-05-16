@@ -1,8 +1,4 @@
-
-
-
-// use reqwest::blocking::get;
-// use serde::Deserialize;
+use std::collections::HashMap;
 
 use crate::core::input::{
     get_input,
@@ -14,25 +10,21 @@ use crate::core::commands::{
     recall,
     help,
     pomodoro,
-    localize
+    localize,
+    Command,
 };
 
 use crate::core::todo::{
     todo,
 };
 
-pub fn spark_bot() {
-    let mut memory = String::new();
+struct Context {
+        memory: String,
+        todo_list: HashMap<String, Vec<String>>,
+    }
 
-    let mut commands: HashMap<&str, &str> = HashMap::new();
-    commands.insert("/start", "Démarrer une nouvelle tâche");
-    commands.insert("/remember", "Mémoriser une information");
-    commands.insert("/recall", "Afficher ce que j'ai mémorisé");
-    commands.insert("/help", "Afficher cette aide");
-    commands.insert("/exit", "Quitter le programme");
-    commands.insert("/pomodoro", "Lancer un minuteur Pomodoro");
-    commands.insert("/localize", "Me localiser dans le monde");
-    commands.insert("/todo", "gérer une liste de tâches");
+
+pub fn spark_bot() {
 
     let mut todo_commands: HashMap<&str, &str> = HashMap::new();
     todo_commands.insert("/new", "Créer une nouvelle liste");
@@ -40,7 +32,11 @@ pub fn spark_bot() {
     todo_commands.insert("/edit", "Permet d'éditer une liste");
     todo_commands.insert("/exit","Quitter le gestionnaire de liste");
 
-    let mut todo_list: HashMap<String, Vec<String>> = HashMap::new();
+    let mut ctx = Context {
+        memory: String::new(),
+        todo_list: HashMap::new(),
+    };
+
 
 
     welcome_message();
@@ -48,26 +44,23 @@ pub fn spark_bot() {
     loop {
         let input = get_input();
 
-        match input.as_str() {
-            "/start" => start(),
-            "/remember" => {
+        match Command::from(input.as_str()) {
+            Command::Start => start(),
+            Command::Remember => {
                 println!("Que dois-je me souvenir ?");
-                memory = get_input();
+                ctx.memory = get_input();
                 println!("Ok, je m'en souviendrai !");
             }
-            "/recall" => recall(&memory),
-            "/pomodoro" => pomodoro(),
-            "/localize" => localize(),
-            "/todo" => todo(&mut todo_list),
-
-
-            "/exit" => {
+            Command::Recall => recall(&ctx.memory),
+            Command::Pomodoro => pomodoro(),
+            Command::Localize => localize(),
+            Command::Todo => todo(&mut ctx.todo_list),
+            Command::Help => help(),
+            Command::Exit => {
                 println!("À bientôt !");
                 break;
             }
-            "/help" => help(&commands),
-            _ => println!("Commande inconnue !"),
+            Command::Unknown => println!("Commande inconnue !"),
         }
     }
 }
-

@@ -1,4 +1,4 @@
-use std::io::{self, Write};
+use std::io::{self};
 
 pub fn get_input() -> String {
     let mut buffer = String::new();
