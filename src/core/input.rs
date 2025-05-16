@@ -6,6 +6,6 @@ pub fn get_input() -> String {
     buffer.trim().to_string()
 }
 
-pub fn welcome_message() {
+pub fn welcome_message() { 
     println!("Salut, je suis Spark. Tape /exit pour quitter.");
 }
