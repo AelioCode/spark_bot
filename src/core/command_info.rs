@@ -9,6 +9,7 @@ pub enum Command {
     Localize,
     Todo,
     Unknown,
+    Remind
 }
 
 impl From<&str> for Command {
@@ -37,6 +38,6 @@ pub fn all_commands() -> Vec<CommandInfo> {
         CommandInfo { name: "/pomodoro", command: Command::Pomodoro, description: "Lancer un minuteur Pomodoro" },
         CommandInfo { name: "/localize", command: Command::Localize, description: "Me localiser dans le monde" },
         CommandInfo { name: "/todo",     command: Command::Todo,     description: "Gérer une liste de tâches" },
-    ]
+        CommandInfo { name: "/remind",   command: Command::Remind,   description: "Créer un rappel pour une certaine durée" }]
 }
 

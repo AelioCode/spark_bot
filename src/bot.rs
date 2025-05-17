@@ -6,13 +6,7 @@ use crate::core::input::{
 };
 
 use crate::commands::{
-    start,
-    remember,
-    recall,
-    help,
-    pomodoro,
-    localize,
-    todo,
+    help, localize, pomodoro, recall, remember, remind, start, todo
 };
 
 
@@ -31,6 +25,7 @@ pub fn spark_bot() {
     let mut ctx = Context {
         memory: String::new(),
         todo_list: HashMap::new(),
+        reminders: Vec::new()
     };
 
     welcome_message();
@@ -45,6 +40,7 @@ pub fn spark_bot() {
             Command::Pomodoro => pomodoro::handle_pomodoro(),
             Command::Localize => localize::handle_localize(),
             Command::Todo => todo::handle_todo(&mut ctx.todo_list),
+            Command::Remind => remind::handle_remind(&mut ctx, input.as_str()),
             Command::Help => help::handle_help(),
             Command::Exit => {
                 println!("À bientôt !");
