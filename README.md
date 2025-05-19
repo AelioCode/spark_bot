@@ -16,6 +16,27 @@ src/
 ├── main.rs
 ├── bot.rs
 ├── core/
-│   ├── input.rs
-│   ├── commands.rs
+│   ├── command_info.rs
+│   ├── contexts.rs
+│   └── input.rs
+│   └── structures.rs
+├── commands/
+│   └── help.rs
+│   └── localize.rs
+│   └── pomodoro.rs
+│   └── recall.rs
+│   └── remember.rs
+│   └── remind.rs
+│   └── start.rs
 │   └── todo.rs
+
+## Commandes disponibles
+    /start   : Démarrer une nouvelle tâche
+    /remember: Mémoriser une information
+    /recall  : Afficher ce que Spark a mémorisé
+    /help    : Afficher la liste des commandes
+    /exit    : Quitter le programme
+    /pomodoro: Lancer un minuteur Pomodoro
+    /localize: Me localiser dans le monde (IP)
+    /todo    : Gérer une liste de tâches
+    /remind  : Créer un rappel pour une certaine durée
