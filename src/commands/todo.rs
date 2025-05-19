@@ -72,6 +72,18 @@ fn show_list(todo_list: &HashMap<String, Vec<String>>) {
     }
 }
 
+fn remove_list(todo_list: &HashMap<String, Vec<String>>) {
+    println!(("Quelle liste veux-tu supprimer ?"));
+    let nom = get_input();
+    if todo_list.contains_key(&nom) {
+        todo_list.remove(&nom);
+        println!("✅ Liste '{}' supprimée.", nom);
+    } else {
+        println!("❗ Cette liste n'existe pas.");
+
+    }
+}
+
 // Rentre dans l'éditeur de liste
 fn edit_list(todo_list: &mut HashMap<String, Vec<String>>) {
     println!("Quelle liste veux-tu éditer ?");
