@@ -6,6 +6,7 @@
 - /start : message de bienvenue et configuration initiale
 - Améliorer les threads
     - Si le programme principal se termine, les threads ne seront pas terminés proprement.
+- Faire les tests unitaires
 
 ### Nouveautés
 - /log : Journalisation des actions (log des tâches effectuées)

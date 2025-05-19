@@ -3,7 +3,6 @@ Des idées de tâches simple ou complexe à mettre en oeuvre pour mon super bot 
 # Tâches simples (tâches de premier plan)
 
 - /note : enregistrer une note rapide
-- /log : Journalisation des actions (log des tâches effectuées)
 - /prix : Donne le prix actuel d'une crypto
 - /alert : Fixe une alerte de prix d'une crypto
 - /habit : Suivi d’habitudes (habit tracker)
