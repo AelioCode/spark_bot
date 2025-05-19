@@ -2,6 +2,7 @@
 
 ## À faire
 - Commenter
+- /remove list dans todo
 
 ## En cours
 - /remind : créer un rappel (ex : /remind 10min boire de l’eau)

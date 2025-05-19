@@ -1,3 +1,7 @@
+// bot.rs
+
+/// Cerveau de Spark
+
 use std::collections::HashMap;
 
 use crate::core::input::{

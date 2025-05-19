@@ -1,6 +1,16 @@
+// commands/todo.rs
+
+///Gérer une liste de tâches
+/// /new list
+/// /edit list
+/// /show list
+/// /add item
+/// /remove item
+
 use std::collections::HashMap;
 use crate::core::input::get_input;
 
+// fonctio handle
 pub fn handle_todo(todo_list: &mut HashMap<String, Vec<String>>) {
     println!("📒 Gestionnaire de listes");
 

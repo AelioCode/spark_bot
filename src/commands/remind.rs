@@ -1,7 +1,12 @@
+// commands/remind.rs
+
+///Créer un rappel pour une certaine durée
+
 use std::thread;
 use std::time::Duration;
 use crate::core::context::Context;
 
+// Transforme le texte d'entree en durée
 fn parse_duration(duree: &str) -> Option<Duration> {
     let duree = duree.trim().to_lowercase();
 
@@ -37,6 +42,7 @@ fn parse_duration(duree: &str) -> Option<Duration> {
     }
 }
 
+//fonction handle
 pub fn handle_remind(ctx: &mut Context, input: &str) {
     if let Some(trimmed) = input.strip_prefix("/remind ") {
         let parts: Vec<&str> = trimmed.split(',').collect();

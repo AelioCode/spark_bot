@@ -1,5 +1,10 @@
+// commands/pomodoro.rs
+
+///Lancer un minuteur Pomodoro
+
 use std::io::{self, Write};
 
+// fonction handle
 pub fn handle_pomodoro() {
     let pomodoro = 5;
     let pomodoro_pause = 5;

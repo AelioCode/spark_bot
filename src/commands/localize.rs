@@ -1,3 +1,7 @@
+// commands/localize.rs
+
+/// Me localiser dans le monde (IP)
+
 use reqwest::blocking::get;
 use serde::Deserialize;
 
@@ -11,6 +15,7 @@ struct Location {
     org: Option<String>,
 }
 
+//fonction handle
 pub fn handle_localize() {
     println!("🔍 Localisation en cours...");
 

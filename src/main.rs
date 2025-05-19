@@ -1,3 +1,5 @@
+// main.rs
+
 mod core;
 mod bot;
 mod commands;
