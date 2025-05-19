@@ -5,6 +5,7 @@
 use reqwest::blocking::get;
 use serde::Deserialize;
 
+// structure des informations à donner à l'utilisateur
 #[derive(Deserialize, Debug)]
 struct Location {
     city: Option<String>,
@@ -19,6 +20,7 @@ struct Location {
 pub fn handle_localize() {
     println!("🔍 Localisation en cours...");
 
+    //récupère les informations de localisation depuis le site "https://ipinfo.io/json"
     let response = get("https://ipinfo.io/json");
     match response {
         Ok(resp) => {

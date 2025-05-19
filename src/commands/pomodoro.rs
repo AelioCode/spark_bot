@@ -12,9 +12,11 @@ pub fn handle_pomodoro() {
 
     println!("🍅 Pomodoro démarre: ");
 
+    // 4 cycles au total
     for i in 1..=4 {
         println!("Cycle numéro {}", i);
 
+        // Temps de travail
         while temps < pomodoro {
             temps += 1;
             let m = (pomodoro - temps) / 60;
@@ -27,6 +29,7 @@ pub fn handle_pomodoro() {
         println!("\n⏰ Pause !");
         temps = 0;
 
+        // Temps de pause
         while temps < pomodoro_pause {
             temps += 1;
             let m = (pomodoro_pause - temps) / 60;

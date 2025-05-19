@@ -1,5 +1,6 @@
 // core/command_info.rs
 
+// Enumération des commandes
 #[derive(Clone, Copy)]
 pub enum Command {
     Start,
@@ -23,7 +24,7 @@ impl From<&str> for Command {
             .unwrap_or(Command::Unknown)
     }
 }
-
+// Structure sur les informations des commandes
 pub struct CommandInfo {
     pub name: &'static str,
     pub command: Command,
@@ -34,7 +35,7 @@ pub fn all_commands() -> Vec<CommandInfo> {
     vec![
         CommandInfo { name: "/start",    command: Command::Start,    description: "Démarrer une nouvelle tâche" },
         CommandInfo { name: "/remember", command: Command::Remember, description: "Mémoriser une information" },
-        CommandInfo { name: "/recall",   command: Command::Recall,   description: "Afficher ce que j'ai mémorisé" },
+        CommandInfo { name: "/recall",   command: Command::Recall,   description: "Afficher ce que Spark a mémorisé" },
         CommandInfo { name: "/help",     command: Command::Help,     description: "Afficher la liste des commandes" },
         CommandInfo { name: "/exit",     command: Command::Exit,     description: "Quitter le programme" },
         CommandInfo { name: "/pomodoro", command: Command::Pomodoro, description: "Lancer un minuteur Pomodoro" },
