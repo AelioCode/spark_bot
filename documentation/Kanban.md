@@ -10,6 +10,7 @@
 
 ### Nouveautés
 - /log : Journalisation des actions (log des tâches effectuées)
+- Base de données SQLite
 
 
 
