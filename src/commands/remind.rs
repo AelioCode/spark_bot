@@ -4,7 +4,7 @@
 
 use std::thread;
 use std::time::Duration;
-use crate::core::context::Context;
+use crate::core::structures::Context;
 
 // Transforme le texte d'entree en durée
 fn parse_duration(duree: &str) -> Option<Duration> {

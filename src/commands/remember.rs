@@ -3,7 +3,7 @@
 ///Mémoriser une information
 
 use crate::core::input::get_input;
-use crate::core::context::Context;
+use crate::core::structures::Context;
 
 // fonction handle
 pub fn handle_remember(ctx: &mut Context) {
