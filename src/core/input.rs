@@ -1,5 +1,9 @@
 // core/input.rs
 
+/// Fonctions de communications avec l'utilisateur
+/// get_input
+/// welcome_message
+
 use std::io::{self};
 
 // récupère le texte donné par l'utilisateur

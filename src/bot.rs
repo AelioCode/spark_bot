@@ -1,6 +1,7 @@
 // bot.rs
 
 /// Cerveau de Spark
+/// Boucle principale du projet qui traduit les commandes reçu en fonction à exécuter
 
 ////////////////////////////   IMPORT   ////////////////////////////////
 use std::collections::HashMap;

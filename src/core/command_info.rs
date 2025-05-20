@@ -1,5 +1,7 @@
 // core/command_info.rs
 
+/// Liste des commandes disponibles dans Spark
+
 // Enumération des commandes
 #[derive(Clone, Copy)]
 pub enum Command {

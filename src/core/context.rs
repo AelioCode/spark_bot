@@ -1,5 +1,7 @@
 // core/context.rs
 
+/// Centralise les contextes nécessaires pour le bot et ses commandes
+
 use std::collections::HashMap;
 use crate::core::structures::Reminder;
 

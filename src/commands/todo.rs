@@ -4,6 +4,7 @@
 /// /new list
 /// /edit list
 /// /show list
+/// /remove list
 /// /add item
 /// /remove item
 
