@@ -21,10 +21,11 @@ pub fn handle_todo(todo_list: &mut HashMap<String, Vec<String>>) {
         let input = get_input();
 
         match input.as_str() {
-            "/new" => create_list(todo_list), // créer une nouvelle liste
-            "/show" => show_list(todo_list), // affiche les éléments d'une liste
-            "/edit" => edit_list(todo_list), // rentre dans l'éditeur de liste
-            "/exit" => { // sortie du gestionnaire
+            "/new" => create_list(todo_list),
+            "/show" => show_list(todo_list),
+            "/edit" => edit_list(todo_list),
+            "/remove" => remove_list(todo_list), // Ajout de la commande remove
+            "/exit" => {
                 println!("Fin du gestionnaire");
                 break;
             }
@@ -73,15 +74,14 @@ fn show_list(todo_list: &HashMap<String, Vec<String>>) {
     }
 }
 
-fn remove_list(todo_list: &HashMap<String, Vec<String>>) {
-    println!(("Quelle liste veux-tu supprimer ?"));
+fn remove_list(todo_list: &mut HashMap<String, Vec<String>>) {
+    println!("Quelle liste veux-tu supprimer ?");
     let nom = get_input();
     if todo_list.contains_key(&nom) {
         todo_list.remove(&nom);
         println!("✅ Liste '{}' supprimée.", nom);
     } else {
         println!("❗ Cette liste n'existe pas.");
-
     }
 }
 

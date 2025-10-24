@@ -13,7 +13,7 @@ use crate::commands::{
     help, localize, pomodoro, recall, remember, remind, start, todo
 };
 use crate::core::command_info::Command;
-use crate::core::context::Context;
+use crate::core::structures::Context;
 
 ///////////////////////////////////////////////////////////////////////
 

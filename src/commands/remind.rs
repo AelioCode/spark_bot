@@ -5,6 +5,7 @@
 use std::thread;
 use std::time::Duration;
 use crate::core::structures::Context;
+use crate::core::structures::Reminder;
 
 // Transforme le texte d'entree en durée
 fn parse_duration(duree: &str) -> Option<Duration> {
@@ -44,24 +45,54 @@ fn parse_duration(duree: &str) -> Option<Duration> {
 
 //fonction handle
 pub fn handle_remind(ctx: &mut Context, input: &str) {
-    if let Some(trimmed) = input.strip_prefix("/remind ") {
-        let parts: Vec<&str> = trimmed.split(',').collect();
-        if parts.len() == 2 {
-            let message = parts[0].trim();
-            let duration_str = parts[1].trim();
-            println!("⏰ Tu veux que je te rappelle : \"{}\" dans {}", message, duration_str);
+    match input {
+        "/remind list" => list_reminders(ctx),
+        input if input.starts_with("/remind ") => create_reminder(ctx, input),
+        _ => println!("❌ Format incorrect. Exemple : /remind boire de l'eau, 10min")
+    }
+}
 
-            if let Some(duration) = parse_duration(duration_str) {
-                let message = message.to_string();
-                thread::spawn(move || {
-                    thread::sleep(duration);
-                    println!("🔔 Rappel : {}", message);
-                });
-            } else {
-                println!("❌ Durée invalide. Essaie avec un format comme '10min' ou '1 heure'.");
+fn list_reminders(ctx: &Context) {
+    if ctx.reminders.is_empty() {
+        println!("📭 Aucun rappel actif");
+        return;
+    }
+    
+    println!("📋 Rappels actifs :");
+    for reminder in &ctx.reminders {
+        if let Ok(elapsed) = reminder.creation_time.elapsed() {
+            if elapsed < reminder.duration {
+                let remaining = (reminder.duration - elapsed).as_secs();
+                println!("- {} (dans {} secondes)", reminder.message, remaining);
             }
-        } else {
-            println!("❌ Format incorrect. Exemple : /remind boire de l’eau, 10min");
         }
+    }
+}
+
+fn create_reminder(ctx: &mut Context, input: &str) {
+    let trimmed = input.strip_prefix("/remind ").unwrap();
+    let parts: Vec<&str> = trimmed.split(',').collect();
+    if parts.len() == 2 {
+        let message = parts[0].trim().to_string();
+        let duration_str = parts[1].trim();
+        
+        if let Some(duration) = parse_duration(duration_str) {
+            // Créer et stocker le rappel
+            let reminder = Reminder {
+                message: message.clone(),
+                duration,
+                creation_time: std::time::SystemTime::now(),
+            };
+            ctx.reminders.push(reminder);
+            
+            thread::spawn(move || {
+                thread::sleep(duration);  // Attend la durée spécifiée
+                println!("🔔 Rappel : {}", message);
+            });
+        } else {
+            println!("❌ Durée invalide. Essaie avec un format comme '10min' ou '1 heure'.");
+        }
+    } else {
+        println!("❌ Format incorrect. Exemple : /remind boire de l'eau, 10min");
     }
 }

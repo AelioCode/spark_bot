@@ -19,9 +19,11 @@ pub enum Command {
 
 impl From<&str> for Command {
     fn from(input: &str) -> Self {
+        // Ne garder que le premier mot (la commande) pour la recherche
+        let cmd_token = input.split_whitespace().next().unwrap_or("");
         all_commands()
             .iter()
-            .find(|cmd| cmd.name == input)
+            .find(|cmd| cmd.name == cmd_token)
             .map(|cmd| cmd.command)
             .unwrap_or(Command::Unknown)
     }
@@ -43,6 +45,7 @@ pub fn all_commands() -> Vec<CommandInfo> {
         CommandInfo { name: "/pomodoro", command: Command::Pomodoro, description: "Lancer un minuteur Pomodoro" },
         CommandInfo { name: "/localize", command: Command::Localize, description: "Me localiser dans le monde (IP)" },
         CommandInfo { name: "/todo",     command: Command::Todo,     description: "Gérer une liste de tâches" },
-        CommandInfo { name: "/remind",   command: Command::Remind,   description: "Créer un rappel pour une certaine durée" }]
+        CommandInfo { name: "/remind",   command: Command::Remind,   description: "Créer un rappel pour une certaine durée" },
+    ]
 }
 

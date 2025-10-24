@@ -3,12 +3,13 @@
 /// Centralise les structures et contextes nécessaires pour le bot et ses commandes
 
 use std::collections::HashMap;
-use crate::core::structures::Reminder;
+use std::time::{Duration, SystemTime};
 
 // Structure pour la commande /remind
 pub struct Reminder {
     pub message: String,
-    pub duration: std::time::Duration,
+    pub duration: Duration,
+    pub creation_time: SystemTime,
 }
 
 // Mémoire de Spark
