@@ -29,7 +29,7 @@ pub fn spark_bot() {
     let mut ctx = Context {
         memory: String::new(),
         todo_list: HashMap::new(),
-        reminders: Vec::new()
+        reminders: std::sync::Arc::new(std::sync::Mutex::new(Vec::new()))
     };
 
     // Message de bienvenue

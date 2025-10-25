@@ -4,8 +4,8 @@
 
 use std::thread;
 use std::time::Duration;
-use crate::core::structures::Context;
-use crate::core::structures::Reminder;
+use std::sync::Arc;
+use crate::core::structures::{Context, Reminder};
 
 // Transforme le texte d'entree en durée
 fn parse_duration(duree: &str) -> Option<Duration> {
@@ -53,13 +53,14 @@ pub fn handle_remind(ctx: &mut Context, input: &str) {
 }
 
 fn list_reminders(ctx: &Context) {
-    if ctx.reminders.is_empty() {
+    let list = ctx.reminders.lock().unwrap();
+    if list.is_empty() {
         println!("📭 Aucun rappel actif");
         return;
     }
-    
+
     println!("📋 Rappels actifs :");
-    for reminder in &ctx.reminders {
+    for reminder in list.iter() {
         if let Ok(elapsed) = reminder.creation_time.elapsed() {
             if elapsed < reminder.duration {
                 let remaining = (reminder.duration - elapsed).as_secs();
@@ -75,19 +76,29 @@ fn create_reminder(ctx: &mut Context, input: &str) {
     if parts.len() == 2 {
         let message = parts[0].trim().to_string();
         let duration_str = parts[1].trim();
-        
+
         if let Some(duration) = parse_duration(duration_str) {
-            // Créer et stocker le rappel
+            // Créer le reminder
             let reminder = Reminder {
                 message: message.clone(),
                 duration,
                 creation_time: std::time::SystemTime::now(),
             };
-            ctx.reminders.push(reminder);
-            
+
+            // pousser sous lock dans la liste partagée
+            {
+                let mut list = ctx.reminders.lock().unwrap();
+                list.push(reminder);
+            }
+
+            // cloner l'Arc pour le thread qui affichera et nettoiera
+            let reminders = Arc::clone(&ctx.reminders);
+            let message_clone = message.clone();
             thread::spawn(move || {
-                thread::sleep(duration);  // Attend la durée spécifiée
-                println!("🔔 Rappel : {}", message);
+                thread::sleep(duration);
+                println!("🔔 Rappel : {}", message_clone);
+                let mut list = reminders.lock().unwrap();
+                list.retain(|r| r.message != message_clone);
             });
         } else {
             println!("❌ Durée invalide. Essaie avec un format comme '10min' ou '1 heure'.");

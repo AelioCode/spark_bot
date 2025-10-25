@@ -4,8 +4,6 @@
 ### Améliorations
 - Faire retourner des Results aux commandes à la place d'un simple print
 - /start : message de bienvenue et configuration initiale
-- Améliorer les threads
-    - Si le programme principal se termine, les threads ne seront pas terminés proprement.
 - Faire les tests unitaires
 
 ### Nouveautés
@@ -17,7 +15,6 @@
 ________________________________________________________________________________________________________________________
 
 ## En cours
-- /remind : créer un rappel (ex : /remind 10min boire de l’eau)
 
 ## Tâches régulières :
 - Commenter
@@ -36,11 +33,14 @@ ________________________________________________________________________________
 - /pomodoro
 - /localize : détecte ton emplacement (via IP ou config) et te donne des infos locales
 - /todo : gérer une liste de tâches (ajouter, supprimer, lister)
+- /remind : créer un rappel (ex : /remind 10min boire de l’eau)
 
 ### Améliorations
 - Séparation en modules
 - Liste des commandes à un seul endroit
 - /remove list dans todo
+- Améliorer les threads
+    - Si le programme principal se termine, les threads ne seront pas terminés proprement.
 
 
 
